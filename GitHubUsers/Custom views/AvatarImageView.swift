@@ -51,7 +51,7 @@ class AvatarImageView: UIImageView {
             guard let image = UIImage(data: data) else { return }
             
             NetworkManager.shared.cache.setObject(image, forKey: key)
-            print("set cached image")
+            //print("set cached image")
             
             DispatchQueue.main.async {
                 self.image = image

@@ -18,6 +18,8 @@ class FollowersViewController: UIViewController {
     var collectionView: UICollectionView!
     var dataSource: UICollectionViewDiffableDataSource<Section, Follower>!
     var followers: [Follower] = []
+    var page = 1
+    var hasMoreFollowers: Bool!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,7 +27,7 @@ class FollowersViewController: UIViewController {
         view.backgroundColor = .systemBackground
         navigationController?.navigationBar.prefersLargeTitles = true
         
-        getFollowers()
+        getFollowers(page: page)
         configureCollectionView()
         configureDataSource()
     }
@@ -36,15 +38,16 @@ class FollowersViewController: UIViewController {
         navigationController?.setNavigationBarHidden(false, animated: true)
     }
     
-    func getFollowers()
+    func getFollowers(page: Int)
     {
-        NetworkManager.shared.getFollowers(for: username, page: 1) { [weak self] result in
+        NetworkManager.shared.getFollowers(for: username, page: page) { [weak self] result in
             guard let self = self else { return }
             
             switch result {
             case .success(let followers):
-                print(followers)
-                self.followers = followers
+                print(followers.count)
+                self.followers.append(contentsOf: followers)
+                self.hasMoreFollowers = followers.count >= 100
                 self.updateCell()
             case .failure(let error):
                 self.showAlert(title: "Error!", message: error.rawValue)
@@ -60,6 +63,7 @@ class FollowersViewController: UIViewController {
         view.addSubview(collectionView)
         collectionView.backgroundColor = .systemBackground
         collectionView.register(FollowerCell.self, forCellWithReuseIdentifier: FollowerCell.reuseId)
+        collectionView.delegate = self
     }
     
     func configureDataSource() {
@@ -79,6 +83,25 @@ class FollowersViewController: UIViewController {
          
         DispatchQueue.main.async {
             self.dataSource.apply(snapshot, animatingDifferences: true)
+        }
+    }
+}
+
+
+extension FollowersViewController: UICollectionViewDelegate {
+    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        let offsetY = scrollView.contentOffset.y
+        let contentHeight = scrollView.contentSize.height
+        let height = scrollView.frame.height
+        
+        
+        if offsetY > contentHeight - height {
+            guard hasMoreFollowers else {
+                return
+            }
+            
+            page += 1
+            getFollowers(page: page)
         }
     }
 }
