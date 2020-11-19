@@ -40,12 +40,23 @@ class FollowersViewController: UIViewController {
     
     func getFollowers(page: Int)
     {
+        showActivityIndicator()
         NetworkManager.shared.getFollowers(for: username, page: page) { [weak self] result in
             guard let self = self else { return }
+            self.hideActivityIndicator()
             
             switch result {
             case .success(let followers):
                 print(followers.count)
+                
+                if followers.isEmpty {
+                    DispatchQueue.main.async {
+                        self.showEmptyMessageView(with: "No user was found", view: self.view)
+                    }
+                    
+                    return
+                }
+                
                 self.followers.append(contentsOf: followers)
                 self.hasMoreFollowers = followers.count >= 100
                 self.updateCell()

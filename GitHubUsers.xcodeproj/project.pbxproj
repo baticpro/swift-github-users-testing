@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F71B8671256658EB003563F5 /* BatrazEmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F71B8670256658EB003563F5 /* BatrazEmptyView.swift */; };
 		F7326A2725592DF90047E30E /* BatrazLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7326A2625592DF90047E30E /* BatrazLabel.swift */; };
 		F7326A2C2559300B0047E30E /* AlertVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7326A2B2559300B0047E30E /* AlertVC.swift */; };
 		F7326A3125593AF30047E30E /* UIVIewController+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7326A3025593AF30047E30E /* UIVIewController+Ext.swift */; };
@@ -48,6 +49,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		F71B8670256658EB003563F5 /* BatrazEmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BatrazEmptyView.swift; sourceTree = "<group>"; };
 		F7326A2625592DF90047E30E /* BatrazLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BatrazLabel.swift; sourceTree = "<group>"; };
 		F7326A2B2559300B0047E30E /* AlertVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertVC.swift; sourceTree = "<group>"; };
 		F7326A3025593AF30047E30E /* UIVIewController+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIVIewController+Ext.swift"; sourceTree = "<group>"; };
@@ -129,6 +131,7 @@
 				F7EC45572556B1D100F4C14E /* BatrazTextField.swift */,
 				F7326A2625592DF90047E30E /* BatrazLabel.swift */,
 				F7E8C098255C1571003DD2AE /* AvatarImageView.swift */,
+				F71B8670256658EB003563F5 /* BatrazEmptyView.swift */,
 			);
 			path = "Custom views";
 			sourceTree = "<group>";
@@ -363,6 +366,7 @@
 			files = (
 				F7326A2725592DF90047E30E /* BatrazLabel.swift in Sources */,
 				F7EC45222556895100F4C14E /* AppDelegate.swift in Sources */,
+				F71B8671256658EB003563F5 /* BatrazEmptyView.swift in Sources */,
 				F7E8C094255C1248003DD2AE /* FollowerCell.swift in Sources */,
 				F7326A3125593AF30047E30E /* UIVIewController+Ext.swift in Sources */,
 				F7982E2C255ACFBB00B132A4 /* NetworkManager.swift in Sources */,
